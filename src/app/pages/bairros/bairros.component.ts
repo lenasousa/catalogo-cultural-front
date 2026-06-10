@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-bairros',
   imports: [],
-  templateUrl: './bairros.html',
-  styleUrl: './bairros.scss',
+  templateUrl: './bairros.component.html',
+  styleUrl: './bairros.component.scss',
 })
-export class Bairros {}
+export class BairrosComponent {}
