@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-eventos',
   imports: [],
-  templateUrl: './eventos.html',
-  styleUrl: './eventos.scss',
+  templateUrl: './eventos.component.html',
+  styleUrl: './eventos.component.scss',
 })
-export class Eventos {}
+export class EventosComponent {}
