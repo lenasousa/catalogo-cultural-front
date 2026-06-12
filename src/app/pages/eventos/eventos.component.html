@@ -1,1 +1,86 @@
-<p>eventos works!</p>
+<section class="eventos-header container">
+  <div class="navegacao">
+    <a routerLink="/" class="btn-voltar">Home</a> &gt;
+    <a routerLink="/bairros" class="btn-voltar">Bairros</a>
+  </div>
+
+  <h2>Eventos em <span>{{ bairroSelecionado }}</span></h2>
+  <p class="contador-eventos">{{ eventosFiltrados.length }} evento(s) encontrado(s)</p>
+
+  <div class="filtros-container">
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="termoBusca"
+        (input)="aplicarFiltros()"
+        placeholder="Buscar por nome ou descrição...">
+    </div>
+
+    <div class="filtro-tipo">
+      <button class="btn-filtro" [class.ativo]="filtroTipo === 'todos'" (click)="setFiltroTipo('todos')">Todos</button>
+      <button class="btn-filtro" [class.ativo]="filtroTipo === 'Exposição'" (click)="setFiltroTipo('Exposição')">Exposições</button>
+      <button class="btn-filtro" [class.ativo]="filtroTipo === 'Festival'" (click)="setFiltroTipo('Festival')">Festivais</button>
+      <button class="btn-filtro" [class.ativo]="filtroTipo === 'Show'" (click)="setFiltroTipo('Show')">Shows</button>
+      <button class="btn-filtro" [class.ativo]="filtroTipo === 'Teatro'" (click)="setFiltroTipo('Teatro')">Teatro</button>
+      <button class="btn-filtro" [class.ativo]="filtroTipo === 'Cinema'" (click)="setFiltroTipo('Cinema')">Cinema</button>
+    </div>
+
+    <div class="filtro-valor">
+      <span class="filtro-label">Valor:</span>
+      <button class="btn-filtro-valor" [class.ativo]="filtroValor === 'todos'" (click)="setFiltroValor('todos')">Todos</button>
+      <button class="btn-filtro-valor" [class.ativo]="filtroValor === 'gratuito'" (click)="setFiltroValor('gratuito')">Gratuitos</button>
+      <button class="btn-filtro-valor" [class.ativo]="filtroValor === 'pago'" (click)="setFiltroValor('pago')">Pagos</button>
+    </div>
+  </div>
+</section>
+
+<section class="eventos-container container">
+  <div class="cards-grid">
+    @for (evento of eventosFiltrados; track evento.id) {
+      <app-card-evento [evento]="evento" (click)="abrirDetalhes(evento)"></app-card-evento>
+    }
+  </div>
+
+  @if (eventosFiltrados.length === 0) {
+    <div class="sem-resultados">
+      <p>Ops! Não encontramos eventos com esses filtros.</p>
+      <p>Tente outras opções de busca ou altere os filtros aplicados.</p>
+    </div>
+  }
+</section>
+
+@if (exibirModalDetalhes && eventoSelecionado) {
+  <div class="modal show" style="display: block;">
+    <div class="modal-content modal-detalhes">
+      <span class="close-button" (click)="fecharDetalhes()">&times;</span>
+
+      <div class="evento-detalhe-imagem" style="background: linear-gradient(135deg, #FFD6E0, #C7CEEA)"></div>
+      <h2 class="evento-detalhe-titulo">{{ eventoSelecionado.nome }}</h2>
+      <span class="evento-detalhe-tipo">{{ eventoSelecionado.tipo }}</span>
+
+      <div class="evento-detalhe-info">
+        <p><strong>Local:</strong> {{ eventoSelecionado.bairro }}</p>
+        <p><strong>Endereço:</strong> {{ eventoSelecionado.endereco }}</p>
+        <p><strong>Data:</strong> {{ eventoSelecionado.data }}</p>
+        <p class="evento-detalhe-preco">
+          @if (eventoSelecionado.gratuito) {
+            <span class="tag-gratuito-modal">Gratuito</span>
+          } @else {
+            <strong>Valor:</strong> <span class="tag-valor-modal">{{ eventoSelecionado.valor }}</span>
+          }
+        </p>
+        @if (eventoSelecionado.site) {
+          <p><strong>Site:</strong> <a [href]="eventoSelecionado.site" target="_blank" class="btn-site">Acesse o Site</a></p>
+        }
+      </div>
+
+      <div class="evento-detalhe-descricao">
+        <p>{{ eventoSelecionado.descricao }}</p>
+      </div>
+
+      <div class="evento-detalhe-acoes">
+        <button class="btn-voltar-modal" (click)="fecharDetalhes()">Voltar</button>
+      </div>
+    </div>
+  </div>
+}
