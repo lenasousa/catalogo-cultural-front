@@ -1,1 +1,21 @@
-<p>bairros works!</p>
+<section class="bairros-header container">
+  <div class="voltar-container">
+    <a routerLink="/" class="btn-voltar">Voltar para Home</a>
+  </div>
+  <h2>Explorar por Bairros</h2>
+</section>
+
+<section class="bairros-container container">
+  <div class="cards-grid">
+    @for (bairro of bairrosComEventos; track bairro.nome) {
+      <div class="card" [routerLink]="['/eventos']" [queryParams]="{bairro: bairro.nome}">
+        <div class="card-image" style="background: linear-gradient(135deg, #B5DEFF, #D4F0F0)"></div>
+        <div class="card-content">
+          <h3 class="card-title">{{ bairro.nome }}</h3>
+          <p class="card-subtitle">{{ bairro.quantidade }} evento(s)</p>
+          <span class="card-zona">{{ bairro.zona }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</section>
