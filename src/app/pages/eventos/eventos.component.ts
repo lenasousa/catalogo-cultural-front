@@ -10,7 +10,8 @@ import { CardEventoComponent } from '../../components/card-evento/card-evento.co
   selector: 'app-eventos',
   standalone: true,
   imports: [CommonModule, RouterLink, FormsModule, CardEventoComponent],
-  templateUrl: './eventos.component.html'
+  templateUrl: './eventos.component.html',
+  styleUrl: './eventos.component.scss'
 })
 export class EventosComponent implements OnInit {
   private route = inject(ActivatedRoute);
