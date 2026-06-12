@@ -9,6 +9,7 @@ import { Evento } from '../../models/evento.model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './modal-sugestao.component.html',
+  styleUrl: './modal-sugestao.component.scss'
 })
 export class ModalSugestaoComponent {
   private eventoService = inject(EventoService);
