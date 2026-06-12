@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Evento } from '../../models/evento.model';
 
 @Component({
   selector: 'app-card-evento',
-  imports: [],
-  templateUrl: './card-evento.html',
-  styleUrl: './card-evento.scss',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './card-evento.component.html',
+  styleUrl: './card-evento.component.scss'
 })
-export class CardEvento {}
+export class CardEventoComponent {
+  @Input() evento!: Evento;
+}
