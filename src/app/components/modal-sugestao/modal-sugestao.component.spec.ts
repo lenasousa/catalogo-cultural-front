@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalSugestao } from './modal-sugestao';
+import { ModalSugestaoComponent } from './modal-sugestao.component';
 
-describe('ModalSugestao', () => {
-  let component: ModalSugestao;
-  let fixture: ComponentFixture<ModalSugestao>;
+describe('ModalSugestaoComponent', () => {
+  let component: ModalSugestaoComponent;
+  let fixture: ComponentFixture<ModalSugestaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalSugestao],
+      imports: [ModalSugestaoComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ModalSugestao);
+    fixture = TestBed.createComponent(ModalSugestaoComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
