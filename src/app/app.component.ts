@@ -1,12 +1,22 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { ModalSugestaoComponent } from './components/modal-sugestao/modal-sugestao.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterLink, ModalSugestaoComponent],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  protected readonly title = signal('catalogo-cultural-front');
+  statusModalSugestao: boolean = false;
+
+  abrirSugestao(): void {
+    this.statusModalSugestao = true;
+  }
+
+  fecharSugestao(): void {
+    this.statusModalSugestao = false;
+  }
 }
