@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router'; // Precisamos ler a URL
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento.model';
 
@@ -12,12 +12,29 @@ import { Evento } from '../../models/evento.model';
   styleUrl: './bairros.component.scss'
 })
 export class BairrosComponent implements OnInit {
+  zonaSelecionada: string = '';
   bairrosComEventos: { nome: string, zona: string, quantidade: number }[] = [];
+
+  private route = inject(ActivatedRoute);
   private eventoService = inject(EventoService);
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.zonaSelecionada = params['zona'] || '';
+      this.carregarBairros();
+    });
+  }
+
+  carregarBairros(): void {
     this.eventoService.getEventos().subscribe({
-      next: (eventos) => this.agruparPorBairro(eventos)
+      next: (eventos) => {
+        // Filtra para exibir APENAS os eventos da zona selecionada na Home
+        const eventosDaZona = this.zonaSelecionada
+          ? eventos.filter(e => e.zona === this.zonaSelecionada)
+          : eventos;
+
+        this.agruparPorBairro(eventosDaZona);
+      }
     });
   }
 
