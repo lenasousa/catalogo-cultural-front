@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router'; // Necessário para clicar e navegar
+import { RouterLink } from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento.model';
 
@@ -14,10 +14,14 @@ import { Evento } from '../../models/evento.model';
 export class HomeComponent implements OnInit {
   zonasComEventos: { nome: string, quantidadeBairros: number }[] = [];
   private eventoService = inject(EventoService);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.eventoService.getEventos().subscribe({
-      next: (eventos) => this.agruparPorZona(eventos)
+      next: (eventos) => {
+        this.agruparPorZona(eventos);
+        this.cdr.detectChanges();
+      }
     });
   }
 
