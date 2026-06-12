@@ -1,7 +1,7 @@
 <section class="eventos-header container">
   <div class="navegacao">
     <a routerLink="/" class="btn-voltar">Home</a> &gt;
-    <a routerLink="/bairros" class="btn-voltar">Bairros</a>
+    <a routerLink="/bairros" [queryParams]="{zona: zonaSelecionada}" class="btn-voltar">Bairros</a>
   </div>
 
   <h2>Eventos em <span>{{ bairroSelecionado }}</span></h2>
