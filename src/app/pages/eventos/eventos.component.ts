@@ -21,6 +21,7 @@ export class EventosComponent implements OnInit {
   bairroSelecionado: string = '';
   todosEventosdoBairro: Evento[] = [];
   eventosFiltrados: Evento[] = [];
+  zonaSelecionada: string = '';
 
   // Estados dos filtros
   filtroTipo: string = 'todos';
@@ -35,6 +36,7 @@ export class EventosComponent implements OnInit {
     // Captura o parâmetro 'bairro' enviado via QueryString da página de bairros
     this.route.queryParams.subscribe(params => {
       this.bairroSelecionado = params['bairro'] || '';
+      this.zonaSelecionada = params['zona'] || '';
       this.carregarEventos();
     });
   }
