@@ -1,1 +1,23 @@
-<p>card-evento works!</p>
+<div class="card">
+  <div class="card-image" [ngStyle]="{'background': evento.imagem ? 'url(' + evento.imagem + ')' : 'linear-gradient(135deg, #FFD6E0, #C7CEEA)'}"></div>
+
+  <div class="card-content">
+    <h3 class="card-title">{{ evento.nome }}</h3>
+    <p class="card-subtitle">{{ evento.tipo }}</p>
+
+    <div class="card-info">
+      <p>{{ evento.endereco }}</p>
+      <p><span class="card-data">{{ evento.data }}</span></p>
+
+      <p>
+        @if (evento.gratuito) {
+          <span class="tag-gratuito">Gratuito</span>
+        } @else {
+          <span class="tag-valor">{{ evento.valor }}</span>
+        }
+      </p>
+
+      <span class="card-zona">{{ evento.zona }}</span>
+    </div>
+  </div>
+</div>
