@@ -7,6 +7,10 @@
 
 <main>
   <router-outlet></router-outlet>
+
+  <button class="btn-voltar-topo" [class.visible]="mostrarBotaoTopo" (click)="voltarAoTopo()" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </button>
 </main>
 
 <footer>
