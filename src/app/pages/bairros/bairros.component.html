@@ -4,3 +4,28 @@
   </div>
   <h2>Bairros da Zona <span>{{ zonaSelecionada }}</span></h2>
 </section>
+
+<section class="bairros-container container">
+
+  @if (bairrosComEventos.length === 0) {
+    <p style="text-align: center; color: #6B7280; margin-top: 2rem;">A procurar bairros nesta zona...</p>
+  } @else {
+    <div class="cards-grid">
+      @for (bairro of bairrosComEventos; track bairro.nome) {
+
+        <div class="card" [routerLink]="['/eventos']" [queryParams]="{bairro: bairro.nome, zona: bairro.zona}">
+
+          <div class="card-image" style="background: linear-gradient(135deg, #B5DEFF, #D4F0F0)"></div>
+
+          <div class="card-content">
+            <h3 class="card-title">{{ bairro.nome }}</h3>
+            <p class="card-subtitle">{{ bairro.quantidade }} evento(s)</p>
+            <span class="card-zona">{{ bairro.zona }}</span>
+          </div>
+
+        </div>
+      }
+    </div>
+  }
+
+</section>
