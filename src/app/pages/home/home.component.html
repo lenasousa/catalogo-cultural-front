@@ -1,12 +1,22 @@
 <section class="home-container container">
-  <h2>Catálogo Cultural - Destaques</h2>
+  <h2>Explore os Espaços Culturais de São Paulo</h2>
+  <p style="text-align: center; color: #6B7280; margin-bottom: 2rem;">Descubra lugares incríveis organizados por zonas da cidade</p>
 
-  @if (eventos.length === 0) {
-    <p>A carregar eventos do servidor...</p>
+  @if (zonasComEventos.length === 0) {
+    <p>A carregar zonas do servidor...</p>
   } @else {
     <div class="cards-grid">
-      @for (evento of eventos; track evento.id) {
-        <app-card-evento [evento]="evento"></app-card-evento>
+      @for (zona of zonasComEventos; track zona.nome) {
+        <div class="card" [routerLink]="['/bairros']" [queryParams]="{zona: zona.nome}">
+          <div class="card-image" style="background: linear-gradient(135deg, #FFD6E0, #C7CEEA)"></div>
+          <div class="card-content">
+            <h3 class="card-title">Zona {{ zona.nome }}</h3>
+            <p class="card-subtitle">{{ zona.quantidadeBairros }} bairro(s) com eventos</p>
+            <div class="card-info">
+              <p>Clique para explorar os bairros</p>
+            </div>
+          </div>
+        </div>
       }
     </div>
   }
