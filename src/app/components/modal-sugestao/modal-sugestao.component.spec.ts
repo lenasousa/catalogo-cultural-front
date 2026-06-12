@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalSugestaoComponent } from './modal-sugestao.component';
 import { provideHttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 describe('ModalSugestaoComponent', () => {
   let component: ModalSugestaoComponent;
@@ -9,17 +8,24 @@ describe('ModalSugestaoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalSugestaoComponent, FormsModule],
+      imports: [ModalSugestaoComponent],
       providers: [provideHttpClient()]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ModalSugestaoComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+
+    (globalThis as any).spyOn(window, 'alert');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('deve alertar erro se faltarem campos obrigatórios ao submeter', () => {
+    // Esvazia campos obrigatórios
+    component.novoEvento.nome = '';
+    component.novoEvento.tipo = '';
+
+    component.submeterFormulario();
+
+    // Verifica se a mensagem de validação foi disparada
+    expect(window.alert).toHaveBeenCalledWith('Por favor, preencha todos os campos obrigatórios.');
   });
 });
