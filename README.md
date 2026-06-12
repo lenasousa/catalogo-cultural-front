@@ -1,59 +1,80 @@
-# CatalogoCulturalFront
+# Catálogo Cultural Interativo de São Paulo - Front-End
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.0.
+Este repositório contém a camada Front-End (Single Page Application) do projeto de mapeamento e catalogação de espaços e eventos culturais do município de São Paulo. Desenvolvida sob rigorosos padrões de Engenharia de Software, a interface foca-se na usabilidade, modularidade e integração assíncrona com uma API RESTful corporativa.
 
-## Development server
+O sistema foi desenhado para seguir uma navegação hierárquica e intuitiva: Zonas de São Paulo -> Bairros Integrantes -> Catálogo de Eventos Locais, permitindo a descoberta de espaços por meio de filtros dinâmicos de pesquisa.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Objetivos de Desenvolvimento Sustentável (ODS)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+A plataforma integra-se diretamente com a Agenda 2030 da ONU, apoiando:
+* **ODS 4 (Educação de Qualidade):** Promove o acesso a espaços culturais e pedagógicos.
+* **ODS 8 (Trabalho Decente e Crescimento Económico):** Dá visibilidade a artistas e produtores locais.
+* **ODS 11 (Cidades e Comunidades Sustentáveis):** Fomenta a ocupação sustentável do tecido urbano.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Tecnologias e Arquitetura
 
-```bash
-ng generate component component-name
-```
+* **Framework:** Angular (v17+)
+* **Linguagem:** TypeScript
+* **Arquitetura:** Componentes Independentes (Standalone Components)
+* **Estilização:** SCSS com encapsulamento de visualização (View Encapsulation), garantindo a inexistência de conflitos de CSS entre páginas.
+* **Gestão de Estado e Comunicação:** RxJS (Observables) para consumo assíncrono da API HTTP.
+* **Testes Automatizados:** Vitest configurado para testes unitários de componentes e serviços.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Requisitos do Sistema
 
-## Building
+Para compilar e executar este projeto localmente, é necessário ter instalado:
+* Node.js (versão 18.x ou superior)
+* Angular CLI (versão 17 ou superior)
+* Gestor de pacotes npm
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## Instruções de Instalação e Execução
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+1. Clone este repositório e navegue até ao diretório principal:
+   cd catalogo-cultural-front
 
-## Running unit tests
+2. Instale as dependências do projeto:
+   npm install
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+3. Inicialize o servidor de desenvolvimento:
+   ng serve
 
-```bash
-ng test
-```
+4. Aceda à aplicação no seu navegador através do endereço http://localhost:4200.
 
-## Running end-to-end tests
+> **Nota:** Para o pleno funcionamento dos dados na interface, certifique-se de que a API de Back-End, disponibilizada em https://github.com/lenasousa/CatalogoCultural.API, está em execução simultânea na porta esperada (padrão: http://localhost:5162/api/eventos).
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## Suite de Testes
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+O projeto possui cobertura de testes unitários com foco na validação de regras de negócio (agrupamento de bairros, filtros de eventos e validação de formulários). Para executar os testes, utilize o comando:
 
-## Additional Resources
+npm run test
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## Estrutura Principal de Diretórios
+
+src/
+├── app/
+│   ├── components/
+│   │   ├── card-evento/        # Renderização visual dos cards
+│   │   └── modal-sugestao/     # Formulário para envio de novos espaços
+│   ├── models/
+│   │   └── evento.model.ts     # Contratos e tipagem de dados
+│   ├── pages/
+│   │   ├── bairros/            # Agregação e filtros por bairro
+│   │   ├── eventos/            # Listagem, pesquisa textual e detalhes
+│   │   └── home/               # Banner e agrupamento de zonas
+│   ├── services/
+│   │   └── evento.service.ts   # Comunicação HTTP com a API
+│   ├── app.component.html      # Estrutura global (Header e Footer)
+│   └── app.component.routes.ts # Definição de roteamento
+└── styles.scss                 # Estilos macro e resets globais
