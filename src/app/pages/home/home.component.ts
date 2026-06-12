@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventoService } from '../../services/evento.service'; // Confirma se o caminho está correto
+import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento.model';
 import { CardEventoComponent } from '../../components/card-evento/card-evento.component';
 
