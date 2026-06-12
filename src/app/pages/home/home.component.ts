@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
       next: (eventos) => {
         this.agruparPorZona(eventos);
         this.cdr.detectChanges();
+      },
+      error: (erro) => {
+        console.error('ERRO AO CONECTAR NA API:', erro);
+        alert('Não foi possível carregar os dados! Verifique se o seu Backend C# está a correr (dotnet run).');
       }
     });
   }
