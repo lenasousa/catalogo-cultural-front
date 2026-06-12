@@ -2,10 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventoService } from '../../services/evento.service'; // Confirma se o caminho está correto
 import { Evento } from '../../models/evento.model';
+import { CardEventoComponent } from '../../components/card-evento/card-evento.component';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CommonModule, CardEventoComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

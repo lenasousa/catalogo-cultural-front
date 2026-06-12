@@ -1,25 +1,13 @@
-<section class="home-container">
+<section class="home-container container">
   <h2>Catálogo Cultural - Destaques</h2>
 
   @if (eventos.length === 0) {
     <p>A carregar eventos do servidor...</p>
   } @else {
     <div class="cards-grid">
-
       @for (evento of eventos; track evento.id) {
-        <div class="card">
-          <h3>{{ evento.nome }}</h3>
-          <p><strong>Bairro:</strong> {{ evento.bairro }} ({{ evento.zona }})</p>
-          <p><strong>Tipo:</strong> {{ evento.tipo }}</p>
-          <p>{{ evento.descricao }}</p>
-
-          <div class="card-footer">
-            <span class="badge">{{ evento.gratuito ? 'Gratuito' : evento.valor }}</span>
-            <span class="data-badge">{{ evento.data }}</span>
-          </div>
-        </div>
+        <app-card-evento [evento]="evento"></app-card-evento>
       }
-
     </div>
   }
 </section>
