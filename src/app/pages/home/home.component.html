@@ -9,7 +9,7 @@
   <h2>Zonas de São Paulo</h2>
 
   @if (zonasComEventos.length === 0) {
-    <p style="text-align: center; color: #6B7280; margin-top: 2rem;">A carregar zonas do servidor...</p>
+    <p class="carregando">A carregar zonas do servidor...</p>
   } @else {
     <div class="cards-grid">
       @for (zona of zonasComEventos; track zona.nome) {
