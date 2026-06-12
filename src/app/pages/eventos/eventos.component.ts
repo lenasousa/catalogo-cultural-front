@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ import { CardEventoComponent } from '../../components/card-evento/card-evento.co
 export class EventosComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private eventoService = inject(EventoService);
+  private cdr = inject(ChangeDetectorRef);
 
   bairroSelecionado: string = '';
   todosEventosdoBairro: Evento[] = [];
@@ -44,6 +45,7 @@ export class EventosComponent implements OnInit {
         // Filtra inicialmente apenas os eventos pertencentes ao bairro selecionado
         this.todosEventosdoBairro = dados.filter(e => e.bairro === this.bairroSelecionado);
         this.aplicarFiltros();
+        this.cdr.detectChanges();
       }
     });
   }
