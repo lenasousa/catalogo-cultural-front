@@ -1,11 +1,44 @@
 <header>
-  <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/eventos">Eventos</a>
-    <a routerLink="/bairros">Bairros</a>
-  </nav>
+  <div class="container">
+    <h1 class="logo" routerLink="/">Catálogo Cultural Interativo</h1>
+    <button class="btn-sugerir" (click)="abrirSugestao()">Sugerir Espaço</button>
+  </div>
 </header>
 
 <main>
   <router-outlet></router-outlet>
 </main>
+
+<footer>
+  <div class="container">
+    <p>Catálogo Cultural Interativo de São Paulo &copy; 2026</p>
+    <div class="ods-icons">
+      <div class="ods-item">
+        <span class="ods-badge">ODS 4</span>
+        <div class="ods-tooltip">
+          <h3>ODS 4 – Educação de Qualidade</h3>
+          <p><strong>Objetivo:</strong> Garantir uma educação inclusiva, equitativa e de qualidade.</p>
+        </div>
+      </div>
+      <div class="ods-item">
+        <span class="ods-badge">ODS 8</span>
+        <div class="ods-tooltip">
+          <h3>ODS 8 – Trabalho Decente e Crescimento Econômico</h3>
+          <p><strong>Objetivo:</strong> Promover o crescimento econômico sustentado e inclusivo.</p>
+        </div>
+      </div>
+      <div class="ods-item">
+        <span class="ods-badge">ODS 11</span>
+        <div class="ods-tooltip">
+          <h3>ODS 11 – Cidades e Comunidades Sustentáveis</h3>
+          <p><strong>Objetivo:</strong> Tornar as cidades inclusivas, seguras e sustentáveis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<app-modal-sugestao
+  [exibirModal]="statusModalSugestao"
+  (fechar)="fecharSugestao()">
+</app-modal-sugestao>
