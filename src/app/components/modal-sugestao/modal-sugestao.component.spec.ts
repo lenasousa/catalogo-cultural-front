@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ModalSugestaoComponent } from './modal-sugestao.component';
+import { provideHttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 describe('ModalSugestaoComponent', () => {
   let component: ModalSugestaoComponent;
@@ -8,12 +9,14 @@ describe('ModalSugestaoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalSugestaoComponent],
-    }).compileComponents();
+      imports: [ModalSugestaoComponent, FormsModule],
+      providers: [provideHttpClient()]
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(ModalSugestaoComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
