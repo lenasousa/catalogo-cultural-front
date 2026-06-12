@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router'; // Precisamos ler a URL
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento.model';
 
@@ -17,6 +17,7 @@ export class BairrosComponent implements OnInit {
 
   private route = inject(ActivatedRoute);
   private eventoService = inject(EventoService);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -34,6 +35,7 @@ export class BairrosComponent implements OnInit {
           : eventos;
 
         this.agruparPorBairro(eventosDaZona);
+        this.cdr.detectChanges();
       }
     });
   }
