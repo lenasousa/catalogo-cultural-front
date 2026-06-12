@@ -9,6 +9,7 @@ import { Evento } from '../../models/evento.model';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './bairros.component.html',
+  styleUrl: './bairros.component.scss'
 })
 export class BairrosComponent implements OnInit {
   bairrosComEventos: { nome: string, zona: string, quantidade: number }[] = [];
